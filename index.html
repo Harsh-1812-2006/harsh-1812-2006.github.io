@@ -19,7 +19,6 @@
     <div class="sparkle" style="left: 85%; animation-duration: 7.5s; animation-delay: 2.5s;"></div>
   </div>
 
-  <!-- Background Audio (Replace the src link with your own audio file or Gurbani MP3 link) -->
   <!-- Background Audio -->
   <audio id="bgAudio" loop>
     <source src="housebgm.mp3" type="audio/mpeg">
@@ -106,7 +105,6 @@
       const envelope = document.getElementById('envelopeWrapper');
       envelope.classList.toggle('open');
 
-      // Automatically start audio when envelope is opened for the first time
       const audio = document.getElementById('bgAudio');
       if (!isPlaying) {
         audio.play().then(() => {
