@@ -9,6 +9,26 @@
 </head>
 <body>
 
+  <!-- Floating Sparkles / Petals Background Layer -->
+  <div class="sparkles-container">
+    <div class="sparkle" style="left: 10%; animation-duration: 7s; animation-delay: 0s;"></div>
+    <div class="sparkle" style="left: 25%; animation-duration: 9s; animation-delay: 2s;"></div>
+    <div class="sparkle" style="left: 40%; animation-duration: 6s; animation-delay: 1s;"></div>
+    <div class="sparkle" style="left: 55%; animation-duration: 8s; animation-delay: 3s;"></div>
+    <div class="sparkle" style="left: 70%; animation-duration: 10s; animation-delay: 1.5s;"></div>
+    <div class="sparkle" style="left: 85%; animation-duration: 7.5s; animation-delay: 2.5s;"></div>
+  </div>
+
+  <!-- Background Audio (Replace the src link with your own audio file or Gurbani MP3 link) -->
+  <audio id="bgAudio" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=peaceful-garden-healing-ambient-111318.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Sound Toggle Button -->
+  <div class="sound-control" id="soundBtn" onclick="toggleSound()" title="Toggle Music">
+    🔊 <span id="soundText">Music Off</span>
+  </div>
+
   <div class="hint" onclick="toggleEnvelope()">✉ Click envelope to open</div>
 
   <div class="envelope-wrapper" id="envelopeWrapper" onclick="toggleEnvelope()">
@@ -79,9 +99,42 @@
   </div>
 
   <script>
+    let isPlaying = false;
+
     function toggleEnvelope() {
       const envelope = document.getElementById('envelopeWrapper');
       envelope.classList.toggle('open');
+
+      // Automatically start audio when envelope is opened for the first time
+      const audio = document.getElementById('bgAudio');
+      if (!isPlaying) {
+        audio.play().then(() => {
+          isPlaying = true;
+          document.getElementById('soundText').innerText = 'Music On';
+          document.getElementById('soundBtn').classList.add('playing');
+        }).catch(err => {
+          console.log("Audio autoplay restricted by browser:", err);
+        });
+      }
+    }
+
+    function toggleSound() {
+      const audio = document.getElementById('bgAudio');
+      const soundText = document.getElementById('soundText');
+      const soundBtn = document.getElementById('soundBtn');
+
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        soundText.innerText = 'Music Off';
+        soundBtn.classList.remove('playing');
+      } else {
+        audio.play().then(() => {
+          isPlaying = true;
+          soundText.innerText = 'Music On';
+          soundBtn.classList.add('playing');
+        });
+      }
     }
   </script>
 </body>
