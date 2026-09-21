@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Housewarming Invitation | Pannu Family</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --gold: #b38738;
+      --gold-light: #d4af37;
+      --env-bg: #8d4925;
+      --env-dark: #6e3718;
+      --env-light: #a3552d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      background: radial-gradient(circle at center, #f4ebe1 0%, #d8c2b0 100%);
+      font-family: 'Poppins', sans-serif;
+      padding: 40px 15px 100px;
+      overflow-x: hidden;
+    }
+
+    .hint {
+      margin-bottom: 30px;
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #6d4c41;
+      font-weight: 600;
+      animation: pulse 2s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-3px); }
+    }
+
+    /* Container */
+    .envelope-wrapper {
+      position: relative;
+      width: 380px;
+      height: 260px;
+      cursor: pointer;
+      margin-top: 140px;
+      transition: margin-top 0.7s ease;
+    }
+
+    /* Pushes envelope down when opened so the card stays centered on screen */
+    .envelope-wrapper.open {
+      margin-top: 430px;
+    }
+
+    /* Envelope Base */
+    .envelope {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: var(--env-dark);
+      border-radius: 8px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Flaps */
+    .flap-top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 190px solid transparent;
+      border-right: 190px solid transparent;
+      border-top: 145px solid var(--env-light);
+      transform-origin: top;
+      transition: transform 0.5s ease, z-index 0.2s 0.25s;
+      z-index: 6; /* covers the seal and card initially */
+    }
+
+    .flap-left {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-top: 130px solid transparent;
+      border-bottom: 130px solid transparent;
+      border-left: 190px solid var(--env-bg);
+      z-index: 4;
+      border-radius: 8px 0 0 8px;
+    }
+
+    .flap-right {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-top: 130px solid transparent;
+      border-bottom: 130px solid transparent;
+      border-right: 190px solid var(--env-bg);
+      z-index: 4;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .flap-bottom {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 0;
+      border-left: 190px solid transparent;
+      border-right: 190px solid transparent;
+      border-bottom: 150px solid var(--env-dark);
+      z-index: 5; /* stays in front of the card while closed */
+      border-radius: 0 0 8px 8px;
+    }
+
+    /* Wax Seal */
+    .wax-seal {
+      position: absolute;
+      top: 125px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 52px;
+      height: 52px;
+      background: radial-gradient(circle, #ffd700, #b8860b);
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+      z-index: 7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: #3b2204;
+      font-size: 1.2rem;
+      transition: opacity 0.3s ease;
+    }
+
+    /* The Invitation Card (Hidden inside by default) */
+    .card {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      width: 350px;
+      background: #fffdf9 url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h18v2H22v18h-2V20.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm20-16h2v2H36V4zm0 4h2v2H36V8zm0 4h2v2H36v-2zm0 4h2v2H36v-2z' fill='%23b8977e' fill-opacity='0.03'/%3E%3C/svg%3E");
+      border-radius: 12px;
+      padding: 24px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      border: 1px solid #e7d8c9;
+      text-align: center;
+      
+      /* Card hidden deep inside the envelope */
+      z-index: 2;
+      transform: translateY(20px) scale(0.92);
+      opacity: 0;
+      transition: transform 0.7s cubic-bezier(0.18, 0.89, 0.32, 1.15) 0.3s, 
+                  opacity 0.4s ease 0.2s, 
+                  z-index 0.1s ease 0.4s;
+      pointer-events: none;
+    }
+
+    /* Open State */
+    .envelope-wrapper.open .flap-top {
+      transform: rotateX(180deg);
+      z-index: 1; /* drops behind card once open */
+      transition: transform 0.5s ease, z-index 0.2s 0.2s;
+    }
+
+    .envelope-wrapper.open .wax-seal {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .envelope-wrapper.open .card {
+      opacity: 1;
+      z-index: 10; /* brings card in front of bottom/side flaps */
+      transform: translateY(-460px) scale(1);
+      pointer-events: auto;
+    }
+
+    /* Typography & Details inside Card */
+    .ik-onkar {
+      font-size: 1.8rem;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .gurmukhi {
+      font-size: 0.88rem;
+      color: #5d4037;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .sub-blessing {
+      font-size: 0.8rem;
+      color: #795548;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .waheguru {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem;
+      color: #3e2723;
+      margin: 2px 0 6px;
+    }
+
+    .invitation-text {
+      font-size: 0.76rem;
+      color: #616161;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      letter-spacing: 3px;
+      color: #2e1e17;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      font-size: 0.72rem;
+      letter-spacing: 2.5px;
+      color: #8d6e63;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .event-badge {
+      background: linear-gradient(135deg, #fff7eb, #f7e4cc);
+      border: 1px solid #d8b48f;
+      border-radius: 30px;
+      padding: 7px 12px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: #3e2723;
+      margin-bottom: 15px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 10px;
+      border-top: 1px dashed #d7ccc8;
+      border-bottom: 1px dashed #d7ccc8;
+      padding: 10px 0;
+      margin-bottom: 12px;
+      text-align: left;
+      font-size: 0.75rem;
+    }
+
+    .details-grid div:first-child {
+      border-right: 1px solid #efebe9;
+      padding-right: 8px;
+    }
+
+    .col-title {
+      font-weight: 600;
+      color: #8d6e63;
+      letter-spacing: 1px;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .col-val {
+      font-weight: 500;
+      color: #2e1e17;
+      line-height: 1.35;
+    }
+
+    .venue-box {
+      margin-bottom: 14px;
+    }
+
+    .venue-title {
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #c62828;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .venue-address {
+      font-size: 0.76rem;
+      color: #424242;
+      line-height: 1.35;
+      font-weight: 500;
+    }
+
+    /* Maps Button */
+    .map-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      background: linear-gradient(135deg, #b8860b, #936304);
+      color: #ffffff !important;
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 9px 16px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(184, 134, 11, 0.35);
+      transition: transform 0.2s, background 0.2s;
+      margin-top: 6px;
+    }
+
+    .map-btn:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #cf9710, #aa7306);
+    }
+
+    .family-sign {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.6rem;
+      color: #3e2723;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hint" onclick="toggleEnvelope()">✉ Click envelope to open</div>
+
+  <div class="envelope-wrapper" id="envelopeWrapper" onclick="toggleEnvelope()">
+    <div class="envelope">
+      <div class="flap-top"></div>
+      <div class="wax-seal">ੴ</div>
+      <div class="flap-left"></div>
+      <div class="flap-right"></div>
+      <div class="flap-bottom"></div>
+
+      <!-- Main Invitation Card -->
+      <div class="card" onclick="event.stopPropagation()">
+        <div class="ik-onkar">ੴ</div>
+        <div class="gurmukhi">॥ ਲਖ ਖੁਸੀਆ ਪਾਤਿਸਾਹੀਆ ਜੇ ਸਤਿਗੁਰੁ ਨਦਰਿ ਕਰੇਇ ॥</div>
+        
+        <p class="sub-blessing">With the blessings of</p>
+        <h2 class="waheguru">Waheguru Ji,</h2>
+
+        <p class="invitation-text">
+          We would be delighted to have you join us as we celebrate the joy of new beginnings in our new home.
+        </p>
+
+        <h1 class="title">HOUSEWARMING</h1>
+        <p class="subtitle">Invitation</p>
+
+        <div class="event-badge">
+          Samapti Shri Akhand Path Sahib
+        </div>
+
+        <div class="details-grid">
+          <div>
+            <div class="col-title">🗓 Date</div>
+            <div class="col-val"><strong>Saturday</strong><br />24 Oct 2026</div>
+          </div>
+          <div>
+            <div class="col-title">⏰ Time</div>
+            <div class="col-val">
+              Kirtan & Ardas: 11:00 AM<br />
+              Followed by Lunch: 1:00 PM
+            </div>
+          </div>
+        </div>
+
+        <div class="venue-box">
+          <div class="venue-title">📍 Venue</div>
+          <p class="venue-address">
+            Flat No. 406, AAD ONE,<br />
+            Brundavan Colony, Rajendra Nagar,<br />
+            Hyderabad, Telangana
+          </p>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=AAD+ONE+Brundavan+Colony+Rajendra+Nagar+Hyderabad+Telangana" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="map-btn"
+          >
+            🗺 Open in Google Maps
+          </a>
+        </div>
+
+        <p style="font-size: 0.72rem; font-style: italic; color: #795548;">
+          Your presence and blessings will make our new beginning truly special.
+        </p>
+
+        <div class="family-sign">With love, Pannu Family</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleEnvelope() {
+      const envelope = document.getElementById('envelopeWrapper');
+      envelope.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
