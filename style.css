@@ -1,0 +1,334 @@
+:root {
+  --gold: #b38738;
+  --gold-light: #d4af37;
+  --env-bg: #8d4925;
+  --env-dark: #6e3718;
+  --env-light: #a3552d;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: radial-gradient(circle at center, #f4ebe1 0%, #d8c2b0 100%);
+  font-family: 'Poppins', sans-serif;
+  padding: 40px 15px 100px;
+  overflow-x: hidden;
+}
+
+.hint {
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #6d4c41;
+  font-weight: 600;
+  animation: pulse 2s infinite;
+  cursor: pointer;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-3px); }
+}
+
+/* Container */
+.envelope-wrapper {
+  position: relative;
+  width: 380px;
+  height: 260px;
+  cursor: pointer;
+  margin-top: 140px;
+  transition: margin-top 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Pushes envelope down when opened so the card stays centered on screen */
+.envelope-wrapper.open {
+  margin-top: 430px;
+}
+
+/* Envelope Base */
+.envelope {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: var(--env-dark);
+  border-radius: 10px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Flaps */
+.flap-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 190px solid transparent;
+  border-right: 190px solid transparent;
+  border-top: 145px solid var(--env-light);
+  transform-origin: top;
+  transition: transform 0.5s ease, z-index 0.2s 0.25s;
+  z-index: 6;
+}
+
+.flap-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-top: 130px solid transparent;
+  border-bottom: 130px solid transparent;
+  border-left: 190px solid var(--env-bg);
+  z-index: 4;
+  border-radius: 10px 0 0 10px;
+}
+
+.flap-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 130px solid transparent;
+  border-bottom: 130px solid transparent;
+  border-right: 190px solid var(--env-bg);
+  z-index: 4;
+  border-radius: 0 10px 10px 0;
+}
+
+.flap-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 190px solid transparent;
+  border-right: 190px solid transparent;
+  border-bottom: 150px solid var(--env-dark);
+  z-index: 5;
+  border-radius: 0 0 10px 10px;
+}
+
+/* Wax Seal */
+.wax-seal {
+  position: absolute;
+  top: 125px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 54px;
+  height: 54px;
+  background: radial-gradient(circle, #ffe066, #c69214);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  color: #3b2204;
+  font-size: 1.25rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.wax-seal:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* The Invitation Card */
+.card {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  width: 350px;
+  background: #fffdf9 url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h18v2H22v18h-2V20.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm20-16h2v2H36V4zm0 4h2v2H36V8zm0 4h2v2H36v-2zm0 4h2v2H36v-2z' fill='%23b8977e' fill-opacity='0.04'/%3E%3C/svg%3E");
+  border-radius: 12px;
+  padding: 26px 20px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+  border: 1.5px solid #dfcca9;
+  text-align: center;
+  
+  z-index: 2;
+  transform: translateY(20px) scale(0.92);
+  opacity: 0;
+  transition: transform 0.7s cubic-bezier(0.18, 0.89, 0.32, 1.15) 0.3s, 
+              opacity 0.4s ease 0.2s, 
+              z-index 0.1s ease 0.4s;
+  pointer-events: none;
+}
+
+/* Open State */
+.envelope-wrapper.open .flap-top {
+  transform: rotateX(180deg);
+  z-index: 1;
+  transition: transform 0.5s ease, z-index 0.2s 0.2s;
+}
+
+.envelope-wrapper.open .wax-seal {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope-wrapper.open .card {
+  opacity: 1;
+  z-index: 10;
+  transform: translateY(-460px) scale(1);
+  pointer-events: auto;
+}
+
+/* Typography & Details inside Card */
+.ik-onkar {
+  font-size: 1.85rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.gurmukhi {
+  font-size: 0.88rem;
+  color: #5d4037;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.sub-blessing {
+  font-size: 0.8rem;
+  color: #795548;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.waheguru {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.1rem;
+  color: #3e2723;
+  margin: 2px 0 6px;
+}
+
+.invitation-text {
+  font-size: 0.76rem;
+  color: #555555;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.3rem;
+  letter-spacing: 3px;
+  color: #2e1e17;
+  font-weight: 700;
+}
+
+.subtitle {
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  color: #8d6e63;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.event-badge {
+  background: linear-gradient(135deg, #fff7eb, #f7e4cc);
+  border: 1px solid #d8b48f;
+  border-radius: 30px;
+  padding: 8px 14px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #3e2723;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10px;
+  border-top: 1px dashed #d7ccc8;
+  border-bottom: 1px dashed #d7ccc8;
+  padding: 10px 0;
+  margin-bottom: 12px;
+  text-align: left;
+  font-size: 0.75rem;
+}
+
+.details-grid div:first-child {
+  border-right: 1px solid #efebe9;
+  padding-right: 8px;
+}
+
+.col-title {
+  font-weight: 600;
+  color: #8d6e63;
+  letter-spacing: 1px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.col-val {
+  font-weight: 500;
+  color: #2e1e17;
+  line-height: 1.4;
+}
+
+.venue-box {
+  margin-bottom: 14px;
+}
+
+.venue-title {
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #c62828;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.venue-address {
+  font-size: 0.76rem;
+  color: #424242;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+/* Maps Button */
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: linear-gradient(135deg, #b8860b, #936304);
+  color: #ffffff !important;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.35);
+  transition: transform 0.2s, background 0.2s;
+  margin-top: 6px;
+}
+
+.map-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #cf9710, #aa7306);
+}
+
+.family-sign {
+  font-family: 'Great Vibes', cursive;
+  font-size: 1.7rem;
+  color: #3e2723;
+  margin-top: 10px;
+}
