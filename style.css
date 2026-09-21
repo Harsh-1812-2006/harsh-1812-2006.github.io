@@ -22,6 +22,76 @@ body {
   font-family: 'Poppins', sans-serif;
   padding: 40px 15px 100px;
   overflow-x: hidden;
+  position: relative;
+}
+
+/* Floating Sparkles / Petals Animation */
+.sparkles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.sparkle {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 10px;
+  background: radial-gradient(circle, #fff7d6 0%, #d4af37 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 8px #d4af37;
+  opacity: 0.8;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-20px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(105vh) translateX(50px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Sound Control Button */
+.sound-control {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+  background: rgba(255, 253, 249, 0.9);
+  border: 1px solid #d4af37;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #5d4037;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.sound-control:hover {
+  background: #fff;
+  transform: scale(1.05);
+}
+
+.sound-control.playing {
+  border-color: #b38738;
+  background: #fff8eb;
 }
 
 .hint {
@@ -33,6 +103,7 @@ body {
   font-weight: 600;
   animation: pulse 2s infinite;
   cursor: pointer;
+  z-index: 2;
 }
 
 @keyframes pulse {
@@ -48,6 +119,7 @@ body {
   cursor: pointer;
   margin-top: 140px;
   transition: margin-top 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 3;
 }
 
 /* Pushes envelope down when opened so the card stays centered on screen */
