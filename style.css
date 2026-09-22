@@ -21,7 +21,7 @@ body {
   justify-content: flex-start;
   background: radial-gradient(circle at center, #f4ebe1 0%, #d8c2b0 100%);
   font-family: 'Poppins', sans-serif;
-  padding: 40px 15px 120px;
+  padding: 20px 10px 140px;
   overflow-x: hidden;
   position: relative;
 }
@@ -62,19 +62,19 @@ body {
 /* Sound Button */
 .sound-control {
   position: fixed;
-  top: 18px;
-  right: 18px;
+  top: 14px;
+  right: 14px;
   z-index: 100;
   background: rgba(255, 253, 249, 0.95);
   border: 1px solid var(--gold-light);
-  padding: 8px 14px;
+  padding: 6px 14px;
   border-radius: 30px;
   font-family: inherit;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #5d4037;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
   display: flex;
   align-items: center;
   gap: 6px;
@@ -86,9 +86,9 @@ body {
 }
 
 .hint {
-  margin-bottom: 25px;
-  font-size: 0.95rem;
-  letter-spacing: 2px;
+  margin: 50px 0 20px;
+  font-size: 0.88rem;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   color: #6d4c41;
   font-weight: 600;
@@ -110,20 +110,20 @@ body {
   align-items: center;
 }
 
-/* Original Dimensions */
+/* Envelope Container */
 .envelope-wrapper {
   position: relative;
-  width: 380px;
-  height: 260px;
+  width: 350px;
+  height: 230px;
   cursor: pointer;
-  margin-top: 140px;
-  transition: margin-top 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  margin-top: 20px;
+  transition: margin-top 0.75s cubic-bezier(0.25, 1, 0.5, 1);
   z-index: 3;
 }
 
-/* Displaces envelope downwards to reveal full-length card */
+/* Shifts envelope downward cleanly when open to accommodate tall card */
 .envelope-wrapper.open {
-  margin-top: 560px;
+  margin-top: 510px;
 }
 
 .envelope {
@@ -132,10 +132,10 @@ body {
   height: 100%;
   background: var(--env-dark);
   border-radius: 10px;
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
 }
 
-/* Clean, non-leaking flap geometry */
+/* Leak-proof Clip-Path Flaps */
 .flap {
   position: absolute;
   inset: 0;
@@ -176,11 +176,11 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 54px;
-  height: 54px;
+  width: 50px;
+  height: 50px;
   background: radial-gradient(circle, #ffe066, #c69214);
   border-radius: 50%;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
   z-index: 7;
   display: flex;
   align-items: center;
@@ -188,7 +188,7 @@ body {
   font-family: 'Cinzel', serif;
   font-weight: 700;
   color: #3b2204;
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   transition: opacity 0.3s ease;
 }
 
@@ -202,52 +202,54 @@ body {
   pointer-events: none;
 }
 
-/* Original Full-Length Card Dimensions */
+/* Card - Perfectly Centered via left: 50% and translateX(-50%) */
 .card {
   position: absolute;
   top: 10px;
-  left: 15px;
-  width: 350px;
+  left: 50%;
+  width: 325px;
   background: #fffdf9 url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h18v2H22v18h-2V20.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm20-16h2v2H36V4zm0 4h2v2H36V8zm0 4h2v2H36v-2zm0 4h2v2H36v-2z' fill='%23b8977e' fill-opacity='0.04'/%3E%3C/svg%3E");
   border-radius: 12px;
-  padding: 26px 20px;
+  padding: 24px 18px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
   border: 1.5px solid #dfcca9;
   text-align: center;
   z-index: 2;
-  transform: translateY(20px) scale(0.92);
+  transform: translate(-50%, 15px) scale(0.94);
   opacity: 0;
-  transition: transform 0.7s cubic-bezier(0.18, 0.89, 0.32, 1.15) 0.3s, 
+  transition: transform 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.15) 0.3s, 
               opacity 0.4s ease 0.2s, 
               z-index 0.1s ease 0.4s;
   pointer-events: none;
 }
 
-/* Slides up fully to reveal complete content */
+/* Fully visible, centered, and avoids clipping under the top bar */
 .envelope-wrapper.open .card {
   opacity: 1;
   z-index: 10;
-  transform: translateY(-570px) scale(1);
+  transform: translate(-50%, -500px) scale(1);
   pointer-events: auto;
 }
 
-/* Original Typography & Line Heights */
+/* Typography & Layout Spacing */
 .ik-onkar {
-  font-size: 1.85rem;
+  font-size: 1.8rem;
   color: var(--gold);
   font-weight: 700;
-  margin-bottom: 4px;
+  line-height: 1.1;
+  margin-bottom: 2px;
 }
 
 .gurmukhi {
-  font-size: 0.88rem;
+  font-size: 0.76rem;
   color: #5d4037;
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+  white-space: nowrap;
 }
 
 .sub-blessing {
-  font-size: 0.8rem;
+  font-size: 0.74rem;
   color: #795548;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -255,97 +257,96 @@ body {
 
 .waheguru {
   font-family: 'Great Vibes', cursive;
-  font-size: 2.1rem;
+  font-size: 1.95rem;
   color: #3e2723;
-  margin: 2px 0 6px;
+  margin: 1px 0 4px;
 }
 
 .invitation-text {
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   color: #555555;
-  line-height: 1.45;
-  margin-bottom: 12px;
+  line-height: 1.4;
+  margin-bottom: 10px;
 }
 
 .title {
   font-family: 'Cinzel', serif;
-  font-size: 1.3rem;
-  letter-spacing: 3px;
+  font-size: 1.22rem;
+  letter-spacing: 2.5px;
   color: #2e1e17;
   font-weight: 700;
 }
 
 .subtitle {
-  font-size: 0.72rem;
-  letter-spacing: 2.5px;
+  font-size: 0.68rem;
+  letter-spacing: 2px;
   color: #8d6e63;
   text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .event-badge {
   display: inline-block;
   background: linear-gradient(135deg, #fff7eb, #f7e4cc);
   border: 1px solid #d8b48f;
-  border-radius: 30px;
-  padding: 8px 14px;
+  border-radius: 25px;
+  padding: 6px 12px;
   font-family: 'Playfair Display', serif;
   font-style: italic;
-  font-size: 1.05rem;
+  font-size: 0.96rem;
   color: #3e2723;
-  margin-bottom: 15px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+  margin-bottom: 12px;
 }
 
 .details-grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 10px;
+  gap: 8px;
   border-top: 1px dashed #d7ccc8;
   border-bottom: 1px dashed #d7ccc8;
-  padding: 10px 0;
-  margin-bottom: 12px;
+  padding: 8px 0;
+  margin-bottom: 10px;
   text-align: left;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
 }
 
 .details-grid div:first-child {
   border-right: 1px solid #efebe9;
-  padding-right: 8px;
+  padding-right: 6px;
 }
 
 .col-title {
   font-weight: 600;
   color: #8d6e63;
-  letter-spacing: 1px;
-  font-size: 0.7rem;
+  letter-spacing: 0.5px;
+  font-size: 0.66rem;
   text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .col-val {
   font-weight: 500;
   color: #2e1e17;
-  line-height: 1.4;
+  line-height: 1.35;
 }
 
 .venue-box {
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .venue-title {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: #c62828;
   font-weight: 600;
-  margin-bottom: 3px;
+  margin-bottom: 2px;
 }
 
 .venue-address {
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   color: #424242;
-  line-height: 1.4;
+  line-height: 1.35;
   font-weight: 500;
 }
 
@@ -353,49 +354,40 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 6px;
   background: linear-gradient(135deg, #b8860b, #936304);
   color: #ffffff !important;
   text-decoration: none;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 600;
-  padding: 9px 16px;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.35);
-  transition: transform 0.2s, background 0.2s;
-  margin-top: 6px;
+  padding: 7px 15px;
+  border-radius: 18px;
+  box-shadow: 0 3px 10px rgba(184, 134, 11, 0.35);
+  margin-top: 5px;
 }
 
 .map-btn:hover {
-  transform: translateY(-2px);
   background: linear-gradient(135deg, #cf9710, #aa7306);
 }
 
 .final-blessing {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-style: italic;
   color: #795548;
-  margin-top: 6px;
+  margin-top: 5px;
 }
 
 .family-sign {
   font-family: 'Great Vibes', cursive;
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   color: #3e2723;
-  margin-top: 8px;
+  margin-top: 6px;
 }
 
-/* Fluid proportionality for narrow phone screens */
-@media (max-width: 400px) {
+/* Scaling adaptation for ultra-narrow phones */
+@media (max-width: 360px) {
   .envelope-scaler {
     transform: scale(0.92);
-    transform-origin: top center;
-  }
-}
-
-@media (max-width: 350px) {
-  .envelope-scaler {
-    transform: scale(0.85);
     transform-origin: top center;
   }
 }
