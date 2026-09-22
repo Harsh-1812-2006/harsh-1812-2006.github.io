@@ -25,7 +25,7 @@
   </audio>
 
   <!-- Sound Toggle Button -->
-  <button class="sound-control" id="soundBtn" onclick="toggleSound()" type="button">
+  <button class="sound-control" id="soundBtn" onclick="toggleSound()" type="button" aria-label="Toggle music">
     🔊 <span id="soundText">Music Off</span>
   </button>
 
@@ -35,7 +35,7 @@
     <div class="envelope-wrapper" id="envelopeWrapper" onclick="toggleEnvelope()">
       <div class="envelope">
         
-        <!-- Flaps with clip-path (will never bleed past boundaries) -->
+        <!-- Flaps -->
         <div class="flap flap-top"></div>
         <div class="flap flap-left"></div>
         <div class="flap flap-right"></div>
@@ -43,7 +43,7 @@
 
         <div class="wax-seal">ੴ</div>
 
-        <!-- Main Full-Length Invitation Card -->
+        <!-- Centered Full-Length Invitation Card -->
         <article class="card" onclick="event.stopPropagation()">
           <div class="ik-onkar">ੴ</div>
           <div class="gurmukhi">॥ ਲਖ ਖੁਸੀਆ ਪਾਤਿਸਾਹੀਆ ਜੇ ਸਤਿਗੁਰੁ ਨਦਰਿ ਕਰੇਇ ॥</div>
