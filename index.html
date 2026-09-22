@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Housewarming Invitation | Pannu Family</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
@@ -11,12 +11,12 @@
 
   <!-- Floating Sparkles / Petals Layer -->
   <div class="sparkles-container">
-    <div class="sparkle" style="left: 12%; animation-duration: 6.5s; animation-delay: 0s;"></div>
-    <div class="sparkle" style="left: 28%; animation-duration: 8.5s; animation-delay: 1.8s;"></div>
-    <div class="sparkle" style="left: 45%; animation-duration: 7s; animation-delay: 0.8s;"></div>
-    <div class="sparkle" style="left: 62%; animation-duration: 9s; animation-delay: 2.5s;"></div>
-    <div class="sparkle" style="left: 78%; animation-duration: 8s; animation-delay: 1.2s;"></div>
-    <div class="sparkle" style="left: 90%; animation-duration: 7.2s; animation-delay: 2.2s;"></div>
+    <div class="sparkle" style="left: 12%; animation-duration: 7s; animation-delay: 0s;"></div>
+    <div class="sparkle" style="left: 28%; animation-duration: 9s; animation-delay: 2s;"></div>
+    <div class="sparkle" style="left: 45%; animation-duration: 6.5s; animation-delay: 1s;"></div>
+    <div class="sparkle" style="left: 62%; animation-duration: 8.5s; animation-delay: 3s;"></div>
+    <div class="sparkle" style="left: 78%; animation-duration: 10s; animation-delay: 1.5s;"></div>
+    <div class="sparkle" style="left: 90%; animation-duration: 7.5s; animation-delay: 2.5s;"></div>
   </div>
 
   <!-- Background Audio -->
@@ -25,28 +25,25 @@
   </audio>
 
   <!-- Sound Toggle Button -->
-  <button class="sound-control" id="soundBtn" onclick="toggleSound()" type="button" aria-label="Toggle background music">
-    <span id="soundIcon">🔊</span> <span id="soundText">Music Off</span>
+  <button class="sound-control" id="soundBtn" onclick="toggleSound()" type="button">
+    🔊 <span id="soundText">Music Off</span>
   </button>
 
-  <p class="hint" id="hintText" onclick="toggleEnvelope()">✉ Tap envelope to open</p>
+  <p class="hint" onclick="toggleEnvelope()">✉ Click envelope to open</p>
 
   <div class="envelope-scaler">
     <div class="envelope-wrapper" id="envelopeWrapper" onclick="toggleEnvelope()">
       <div class="envelope">
         
-        <!-- Top Folding Flap -->
+        <!-- Flaps with clip-path (will never bleed past boundaries) -->
         <div class="flap flap-top"></div>
-
-        <!-- Flap Base (Left, Right, Bottom) -->
         <div class="flap flap-left"></div>
         <div class="flap flap-right"></div>
         <div class="flap flap-bottom"></div>
 
-        <!-- Wax Seal -->
         <div class="wax-seal">ੴ</div>
 
-        <!-- Main Invitation Card -->
+        <!-- Main Full-Length Invitation Card -->
         <article class="card" onclick="event.stopPropagation()">
           <div class="ik-onkar">ੴ</div>
           <div class="gurmukhi">॥ ਲਖ ਖੁਸੀਆ ਪਾਤਿਸਾਹੀਆ ਜੇ ਸਤਿਗੁਰੁ ਨਦਰਿ ਕਰੇਇ ॥</div>
@@ -66,24 +63,25 @@
           </div>
 
           <div class="details-grid">
-            <div class="col-item">
-              <span class="col-title">🗓 Date</span>
-              <span class="col-val"><strong>Saturday</strong><br />24 Oct 2026</span>
+            <div>
+              <div class="col-title">🗓 Date</div>
+              <div class="col-val"><strong>Saturday</strong><br />24 Oct 2026</div>
             </div>
-            <div class="col-item">
-              <span class="col-title">⏰ Time</span>
-              <span class="col-val">
+            <div>
+              <div class="col-title">⏰ Time</div>
+              <div class="col-val">
                 Kirtan & Ardas: 11:00 AM<br />
                 Followed by Lunch: 1:00 PM
-              </span>
+              </div>
             </div>
           </div>
 
           <div class="venue-box">
-            <span class="venue-title">📍 Venue</span>
+            <div class="venue-title">📍 Venue</div>
             <p class="venue-address">
               Flat No. 406, AAD ONE,<br />
-              Brundavan Colony, Rajendra Nagar, Hyderabad
+              Brundavan Colony, Rajendra Nagar,<br />
+              Hyderabad, Telangana
             </p>
             <a
               href="https://www.google.com/maps/search/?api=1&query=AAD+ONE+Brundavan+Colony+Rajendra+Nagar+Hyderabad+Telangana" 
