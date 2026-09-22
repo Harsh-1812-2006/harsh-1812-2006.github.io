@@ -2,97 +2,106 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Housewarming Invitation | Pannu Family</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- Floating Sparkles / Petals Background Layer -->
+  <!-- Floating Sparkles / Petals Layer -->
   <div class="sparkles-container">
-    <div class="sparkle" style="left: 10%; animation-duration: 7s; animation-delay: 0s;"></div>
-    <div class="sparkle" style="left: 25%; animation-duration: 9s; animation-delay: 2s;"></div>
-    <div class="sparkle" style="left: 40%; animation-duration: 6s; animation-delay: 1s;"></div>
-    <div class="sparkle" style="left: 55%; animation-duration: 8s; animation-delay: 3s;"></div>
-    <div class="sparkle" style="left: 70%; animation-duration: 10s; animation-delay: 1.5s;"></div>
-    <div class="sparkle" style="left: 85%; animation-duration: 7.5s; animation-delay: 2.5s;"></div>
+    <div class="sparkle" style="left: 12%; animation-duration: 6.5s; animation-delay: 0s;"></div>
+    <div class="sparkle" style="left: 28%; animation-duration: 8.5s; animation-delay: 1.8s;"></div>
+    <div class="sparkle" style="left: 45%; animation-duration: 7s; animation-delay: 0.8s;"></div>
+    <div class="sparkle" style="left: 62%; animation-duration: 9s; animation-delay: 2.5s;"></div>
+    <div class="sparkle" style="left: 78%; animation-duration: 8s; animation-delay: 1.2s;"></div>
+    <div class="sparkle" style="left: 90%; animation-duration: 7.2s; animation-delay: 2.2s;"></div>
   </div>
 
   <!-- Background Audio -->
-  <audio id="bgAudio" loop>
-    <source src="Lakh_Khushian_Patshahian.mp3" type="audio/mpeg">
+  <audio id="bgAudio" loop preload="auto">
+    <source src="bhai-harjinder-singh-chamkaur-sahib-wale-waheguru-simran-mp3pm_DTOJj6xw.mp3" type="audio/mpeg">
   </audio>
 
   <!-- Sound Toggle Button -->
-  <div class="sound-control" id="soundBtn" onclick="toggleSound()" title="Toggle Music">
-    🔊 <span id="soundText">Music Off</span>
-  </div>
+  <button class="sound-control" id="soundBtn" onclick="toggleSound()" type="button" aria-label="Toggle background music">
+    <span id="soundIcon">🔊</span> <span id="soundText">Music Off</span>
+  </button>
 
-  <div class="hint" onclick="toggleEnvelope()">✉ Click envelope to open</div>
+  <p class="hint" id="hintText" onclick="toggleEnvelope()">✉ Tap envelope to open</p>
 
-  <div class="envelope-wrapper" id="envelopeWrapper" onclick="toggleEnvelope()">
-    <div class="envelope">
-      <div class="flap-top"></div>
-      <div class="wax-seal">ੴ</div>
-      <div class="flap-left"></div>
-      <div class="flap-right"></div>
-      <div class="flap-bottom"></div>
-
-      <!-- Main Invitation Card -->
-      <div class="card" onclick="event.stopPropagation()">
-        <div class="ik-onkar">ੴ</div>
-        <div class="gurmukhi">॥ ਲਖ ਖੁਸੀਆ ਪਾਤਿਸਾਹੀਆ ਜੇ ਸਤਿਗੁਰੁ ਨਦਰਿ ਕਰੇਇ ॥</div>
+  <div class="envelope-scaler">
+    <div class="envelope-wrapper" id="envelopeWrapper" onclick="toggleEnvelope()">
+      <div class="envelope">
         
-        <p class="sub-blessing">With the blessings of</p>
-        <h2 class="waheguru">Waheguru Ji,</h2>
+        <!-- Top Folding Flap -->
+        <div class="flap flap-top"></div>
 
-        <p class="invitation-text">
-          We would be delighted to have you join us as we celebrate the joy of new beginnings in our new home.
-        </p>
+        <!-- Flap Base (Left, Right, Bottom) -->
+        <div class="flap flap-left"></div>
+        <div class="flap flap-right"></div>
+        <div class="flap flap-bottom"></div>
 
-        <h1 class="title">HOUSEWARMING</h1>
-        <p class="subtitle">Invitation</p>
+        <!-- Wax Seal -->
+        <div class="wax-seal">ੴ</div>
 
-        <div class="event-badge">
-          Samapti Shri Akhand Path Sahib
-        </div>
+        <!-- Main Invitation Card -->
+        <article class="card" onclick="event.stopPropagation()">
+          <div class="ik-onkar">ੴ</div>
+          <div class="gurmukhi">॥ ਲਖ ਖੁਸੀਆ ਪਾਤਿਸਾਹੀਆ ਜੇ ਸਤਿਗੁਰੁ ਨਦਰਿ ਕਰੇਇ ॥</div>
+          
+          <p class="sub-blessing">With the blessings of</p>
+          <h2 class="waheguru">Waheguru Ji,</h2>
 
-        <div class="details-grid">
-          <div>
-            <div class="col-title">🗓 Date</div>
-            <div class="col-val"><strong>Saturday</strong><br />24 Oct 2026</div>
+          <p class="invitation-text">
+            We would be delighted to have you join us as we celebrate the joy of new beginnings in our new home.
+          </p>
+
+          <h1 class="title">HOUSEWARMING</h1>
+          <p class="subtitle">Invitation</p>
+
+          <div class="event-badge">
+            Samapti Shri Akhand Path Sahib
           </div>
-          <div>
-            <div class="col-title">⏰ Time</div>
-            <div class="col-val">
-              Kirtan & Ardas: 11:00 AM<br />
-              Followed by Lunch: 1:00 PM
+
+          <div class="details-grid">
+            <div class="col-item">
+              <span class="col-title">🗓 Date</span>
+              <span class="col-val"><strong>Saturday</strong><br />24 Oct 2026</span>
+            </div>
+            <div class="col-item">
+              <span class="col-title">⏰ Time</span>
+              <span class="col-val">
+                Kirtan & Ardas: 11:00 AM<br />
+                Followed by Lunch: 1:00 PM
+              </span>
             </div>
           </div>
-        </div>
 
-        <div class="venue-box">
-          <div class="venue-title">📍 Venue</div>
-          <p class="venue-address">
-            Flat No. 406, AAD ONE,<br />
-            Brundavan Colony, Rajendra Nagar, Hyderabad
+          <div class="venue-box">
+            <span class="venue-title">📍 Venue</span>
+            <p class="venue-address">
+              Flat No. 406, AAD ONE,<br />
+              Brundavan Colony, Rajendra Nagar, Hyderabad
+            </p>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=AAD+ONE+Brundavan+Colony+Rajendra+Nagar+Hyderabad+Telangana" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="map-btn"
+            >
+              🗺 Open in Google Maps
+            </a>
+          </div>
+
+          <p class="final-blessing">
+            Your presence and blessings will make our new beginning truly special.
           </p>
-          <a
-            href="https://www.google.com/maps/search/?api=1&query=AAD+ONE+Brundavan+Colony+Rajendra+Nagar+Hyderabad+Telangana" 
-            target="_blank" 
-            rel="noopener noreferrer" 
-            class="map-btn"
-          >
-            🗺 Open in Google Maps
-          </a>
-        </div>
 
-        <p class="final-blessing">
-          Your presence and blessings will make our new beginning truly special.
-        </p>
+          <div class="family-sign">With love, Pannu Family</div>
+        </article>
 
-        <div class="family-sign">With love, Pannu Family</div>
       </div>
     </div>
   </div>
@@ -102,16 +111,16 @@
 
     function toggleEnvelope() {
       const envelope = document.getElementById('envelopeWrapper');
+      const audio = document.getElementById('bgAudio');
       envelope.classList.toggle('open');
 
-      const audio = document.getElementById('bgAudio');
       if (!isPlaying) {
         audio.play().then(() => {
           isPlaying = true;
           document.getElementById('soundText').innerText = 'Music On';
           document.getElementById('soundBtn').classList.add('playing');
-        }).catch(err => {
-          console.log("Audio autoplay restricted by browser:", err);
+        }).catch(() => {
+          // Handled if browser policies require direct tap on audio toggle
         });
       }
     }
