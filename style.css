@@ -21,7 +21,7 @@ body {
   justify-content: flex-start;
   background: radial-gradient(circle at center, #f4ebe1 0%, #d8c2b0 100%);
   font-family: 'Poppins', sans-serif;
-  padding: 16px 10px 60px;
+  padding: 20px 10px 100px;
   overflow-x: hidden;
   position: relative;
 }
@@ -67,10 +67,10 @@ body {
   z-index: 100;
   background: rgba(255, 253, 249, 0.94);
   border: 1px solid var(--gold-light);
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: 20px;
   font-family: inherit;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: #5d4037;
   cursor: pointer;
@@ -86,8 +86,8 @@ body {
 }
 
 .hint {
-  margin: 45px 0 10px;
-  font-size: 0.82rem;
+  margin: 50px 0 16px;
+  font-size: 0.85rem;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: #6d4c41;
@@ -103,7 +103,6 @@ body {
   50% { opacity: 1; transform: translateY(-2px); }
 }
 
-/* Scaler container to ensure the envelope remains strictly proportionate on narrow phones */
 .envelope-scaler {
   width: 100%;
   display: flex;
@@ -116,14 +115,14 @@ body {
   width: 350px;
   height: 220px;
   cursor: pointer;
-  margin-top: 15px;
-  transition: margin-top 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+  margin-top: 20px;
+  transition: margin-top 0.75s cubic-bezier(0.25, 1, 0.5, 1);
   z-index: 3;
 }
 
-/* Opens envelope and repositions wrapper so card is in primary mobile view */
+/* Pushes envelope down to provide full view of the elongated card */
 .envelope-wrapper.open {
-  margin-top: 400px;
+  margin-top: 480px;
 }
 
 .envelope {
@@ -135,7 +134,7 @@ body {
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
 }
 
-/* Reliable Clip-Path Flaps (Never leak outside borders on mobile) */
+/* Clip-path flaps that stay true to envelope bounds */
 .flap {
   position: absolute;
   inset: 0;
@@ -176,8 +175,8 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   background: radial-gradient(circle, #ffe066, #c69214);
   border-radius: 50%;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
@@ -188,11 +187,10 @@ body {
   font-family: 'Cinzel', serif;
   font-weight: 700;
   color: #3b2204;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   transition: opacity 0.3s ease;
 }
 
-/* Open State */
 .envelope-wrapper.open .flap-top {
   transform: rotateX(180deg);
   z-index: 1;
@@ -203,74 +201,75 @@ body {
   pointer-events: none;
 }
 
-/* Compact Inside Card */
+/* Elongated Card */
 .card {
   position: absolute;
   top: 6px;
   left: 8px;
   width: 334px;
   background: #fffdf9 url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h18v2H22v18h-2V20.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm20-16h2v2H36V4zm0 4h2v2H36V8zm0 4h2v2H36v-2zm0 4h2v2H36v-2z' fill='%23b8977e' fill-opacity='0.035'/%3E%3C/svg%3E");
-  border-radius: 8px;
-  padding: 14px 12px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+  border-radius: 10px;
+  padding: 22px 16px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
   border: 1.5px solid #dfcca9;
   text-align: center;
   z-index: 2;
   transform: translateY(12px) scale(0.94);
   opacity: 0;
-  transition: transform 0.65s cubic-bezier(0.18, 0.89, 0.32, 1.15) 0.25s,
+  transition: transform 0.75s cubic-bezier(0.18, 0.89, 0.32, 1.15) 0.25s,
               opacity 0.35s ease 0.15s,
               z-index 0.1s ease 0.35s;
   pointer-events: none;
 }
 
+/* Card slides up comfortably into view */
 .envelope-wrapper.open .card {
   opacity: 1;
   z-index: 10;
-  transform: translateY(-415px) scale(1);
+  transform: translateY(-500px) scale(1);
   pointer-events: auto;
 }
 
-/* Card Elements & Spacing */
+/* Typography & Layout Spacing */
 .ik-onkar {
-  font-size: 1.35rem;
+  font-size: 1.6rem;
   color: var(--gold);
   font-weight: 700;
   line-height: 1.1;
+  margin-bottom: 2px;
 }
 
 .gurmukhi {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   color: #5d4037;
   font-weight: 600;
-  margin: 2px 0 4px;
-  white-space: nowrap;
+  margin: 2px 0 6px;
 }
 
 .sub-blessing {
-  font-size: 0.64rem;
+  font-size: 0.7rem;
   color: #795548;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.8px;
 }
 
 .waheguru {
   font-family: 'Great Vibes', cursive;
-  font-size: 1.55rem;
+  font-size: 1.85rem;
   color: #3e2723;
-  margin: -2px 0 2px;
+  margin: 0 0 6px;
 }
 
 .invitation-text {
-  font-size: 0.67rem;
+  font-size: 0.74rem;
   color: #555555;
-  line-height: 1.3;
-  margin-bottom: 6px;
+  line-height: 1.4;
+  margin-bottom: 12px;
 }
 
 .title {
   font-family: 'Cinzel', serif;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
   letter-spacing: 2px;
   color: #2e1e17;
   font-weight: 700;
@@ -278,40 +277,40 @@ body {
 }
 
 .subtitle {
-  font-size: 0.62rem;
-  letter-spacing: 1.5px;
+  font-size: 0.68rem;
+  letter-spacing: 2px;
   color: #8d6e63;
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
 }
 
 .event-badge {
   display: inline-block;
   background: linear-gradient(135deg, #fff7eb, #f7e4cc);
   border: 1px solid #d8b48f;
-  border-radius: 16px;
-  padding: 3px 10px;
+  border-radius: 20px;
+  padding: 6px 14px;
   font-family: 'Playfair Display', serif;
   font-style: italic;
-  font-size: 0.82rem;
+  font-size: 0.95rem;
   color: #3e2723;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
 }
 
 .details-grid {
   display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 6px;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10px;
   border-top: 1px dashed #d7ccc8;
   border-bottom: 1px dashed #d7ccc8;
-  padding: 6px 0;
-  margin-bottom: 6px;
+  padding: 10px 0;
+  margin-bottom: 12px;
   text-align: left;
 }
 
 .col-item:first-child {
   border-right: 1px solid #efebe9;
-  padding-right: 6px;
+  padding-right: 8px;
 }
 
 .col-title {
@@ -319,36 +318,37 @@ body {
   font-weight: 600;
   color: #8d6e63;
   letter-spacing: 0.5px;
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   text-transform: uppercase;
-  margin-bottom: 1px;
+  margin-bottom: 2px;
 }
 
 .col-val {
   display: block;
-  font-size: 0.67rem;
+  font-size: 0.72rem;
   font-weight: 500;
   color: #2e1e17;
-  line-height: 1.25;
+  line-height: 1.35;
 }
 
 .venue-box {
-  margin-bottom: 6px;
+  margin-bottom: 12px;
 }
 
 .venue-title {
-  font-size: 0.64rem;
+  font-size: 0.7rem;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #c62828;
   font-weight: 600;
   display: block;
+  margin-bottom: 2px;
 }
 
 .venue-address {
-  font-size: 0.67rem;
+  font-size: 0.74rem;
   color: #424242;
-  line-height: 1.25;
+  line-height: 1.35;
   font-weight: 500;
 }
 
@@ -356,30 +356,30 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 5px;
   background: linear-gradient(135deg, #b8860b, #936304);
   color: #ffffff !important;
   text-decoration: none;
-  font-size: 0.68rem;
+  font-size: 0.74rem;
   font-weight: 600;
-  padding: 5px 12px;
-  border-radius: 14px;
-  box-shadow: 0 2px 7px rgba(184, 134, 11, 0.3);
-  margin-top: 4px;
+  padding: 7px 16px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(184, 134, 11, 0.3);
+  margin-top: 6px;
 }
 
 .final-blessing {
-  font-size: 0.64rem;
+  font-size: 0.7rem;
   font-style: italic;
   color: #795548;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 .family-sign {
   font-family: 'Great Vibes', cursive;
-  font-size: 1.35rem;
+  font-size: 1.55rem;
   color: #3e2723;
-  margin-top: 1px;
+  margin-top: 4px;
 }
 
 /* Scaling down automatically on extra small screens */
