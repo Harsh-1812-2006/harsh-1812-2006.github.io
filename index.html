@@ -119,9 +119,7 @@
           isPlaying = true;
           document.getElementById('soundText').innerText = 'Music On';
           document.getElementById('soundBtn').classList.add('playing');
-        }).catch(() => {
-          // Handled if browser policies require direct tap on audio toggle
-        });
+        }).catch(() => {});
       }
     }
 
